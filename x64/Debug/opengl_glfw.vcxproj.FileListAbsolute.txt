@@ -1,0 +1,2 @@
+C:\Users\busto\source\repos\opengl_glfw\x64\Debug\opengl_glfw.exe
+C:\Users\busto\source\repos\opengl_glfw\x64\Debug\opengl_glfw.pdb
