@@ -16,8 +16,9 @@ const char* vertexShaderSource = "#version 460 core\n"
 
 const char* fragmentShaderSource = "#version  460 core\n"
 "out vec4 FragColor;\n"
+"uniform vec4 ourColor;\n" //outColor is set in the while loop below
 "void main(){\n"
-"    FragColor = vec4(1.0f, 0.5f, 0.2f, 1.0f);\n"
+"    FragColor = ourColor;\n"
 "}\0";
 
 void framebuffer_size_callback(GLFWwindow* window, int width, int height) {
@@ -117,15 +118,28 @@ int main() {
 
 		// Draw triangle
 		glUseProgram(shaderProgram);
+
+		// Update triangle colors
+		float timeValue = glfwGetTime();
+		float greenValue = sin(timeValue) / 2.0f + 0.5f;
+		int vertexColorLocation = glGetUniformLocation(shaderProgram, "ourColor");
+		glUniform4f(vertexColorLocation, 0.0f, greenValue, 0.0f, 1.0f);
+
 		//glBindVertexArray(VAO);
-		//glDrawArrays(GL_TRIANGLES, 0, 3);
-		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
-		glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+		glDrawArrays(GL_TRIANGLES, 0, 3);
+		//glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
+		//glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
 
 		// Check and call events, then swap buffers
 		glfwPollEvents();
 		glfwSwapBuffers(window);
 	}
+
+	// Deallocate resources once done
+	glDeleteVertexArrays(1, &VAO);
+	glDeleteBuffers(1, &VBO);
+	glDeleteBuffers(1, &EBO);
+	glDeleteProgram(shaderProgram);
 
 	glfwTerminate();
 	return 0;

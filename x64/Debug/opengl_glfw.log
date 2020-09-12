@@ -1,2 +1,3 @@
 ﻿  Window.cpp
+C:\Users\busto\source\repos\opengl_glfw\Window.cpp(123,19): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
   opengl_glfw.vcxproj -> C:\Users\busto\source\repos\opengl_glfw\x64\Debug\opengl_glfw.exe
