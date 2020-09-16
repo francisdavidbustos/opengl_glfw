@@ -5,6 +5,7 @@
 #include <stdio.h>
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
+#include "Shader.h"
 
 using namespace std;
 
@@ -107,8 +108,11 @@ int main() {
 	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
 	glEnableVertexAttribArray(0);
 
+	// Importing a shader from code's relative path
+	Shader myShader("VertexShader.glsl", "FragmentShader.glsl");
 
 	while (!glfwWindowShouldClose(window)) {
+
 		// User input
 		processInput(window);
 
@@ -116,6 +120,14 @@ int main() {
 		glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT);
 
+
+		// Shader usage
+		myShader.use();
+		myShader.setFloat("someUniform", 1.0f);
+		glBindVertexArray(VAO);
+		glDrawArrays(GL_TRIANGLES, 0, 3);
+
+		/*
 		// Draw triangle
 		glUseProgram(shaderProgram);
 
@@ -129,6 +141,7 @@ int main() {
 		glDrawArrays(GL_TRIANGLES, 0, 3);
 		//glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
 		//glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+		*/
 
 		// Check and call events, then swap buffers
 		glfwPollEvents();

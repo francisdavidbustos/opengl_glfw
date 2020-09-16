@@ -27,6 +27,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="cpp.hint" />
+    <None Include="VertexShader.glsl">
+      <Filter>Source Files</Filter>
+    </None>
+    <None Include="FragmentShader.glsl">
+      <Filter>Source Files</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Shader.h">
