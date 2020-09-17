@@ -74,6 +74,12 @@ int main() {
 		1, 2, 3  // Second triangle
 	};
 
+	float texCoords[] = {
+		0.0f, 0.0f,	// Bottom left
+		1.0f, 0.0f,	// Bottom right
+		0.5f, 0.5f	// Top center
+	};
+
 	unsigned int vertexShader = glCreateShader(GL_VERTEX_SHADER);
 	glShaderSource(vertexShader, 1, &vertexShaderSource, NULL);
 	glCompileShader(vertexShader);
@@ -110,6 +116,10 @@ int main() {
 
 	// Importing a shader from code's relative path
 	Shader myShader("VertexShader.glsl", "FragmentShader.glsl");
+
+	// Textures
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_MIRRORED_REPEAT);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_MIRRORED_REPEAT);
 
 	while (!glfwWindowShouldClose(window)) {
 
